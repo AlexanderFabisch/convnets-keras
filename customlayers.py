@@ -19,7 +19,7 @@ def crosschannelnormalization(alpha = 1e-4, k=2, beta=0.75, n=5,**kwargs):
         extra_channels = K.permute_dimensions(extra_channels, (0,3,1,2))
         scale = k
         for i in xrange(n):
-            scale += alpha * extra_channels[:,i:i+ch,:,:]
+            scale += alpha / n * extra_channels[:,i:i+ch,:,:]
         scale = scale ** beta
         return X / scale
 
